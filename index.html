@@ -46,7 +46,7 @@
       top: 0;
       background: rgba(8,9,11,0.95);
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px); /* Safari Support */
+      -webkit-backdrop-filter: blur(8px);
       z-index: 50;
     }
     .logo {
@@ -203,7 +203,7 @@
     }
     .choice-card.selected {
       border-color: #1d6fe8;
-      background: rgba(29,111,232,0.08) !important; /* Forces Safari compliance */
+      background: rgba(29,111,232,0.08) !important;
     }
     .choice-card.selected::after {
       content: '✓';
@@ -329,7 +329,7 @@
       font-size: 0.95rem;
       outline: none;
       transition: border-color 0.2s;
-      -webkit-appearance: none; /* Safari normalization */
+      -webkit-appearance: none;
     }
     .form-input:focus { border-color: #1d6fe8; }
     .form-input::placeholder { color: #3a3d45; }
@@ -683,8 +683,7 @@
     <h1 class="screen-title">How Many<br>Cameras?</h1>
     <p class="screen-sub">Cover your driveway, backyard, side gates, and front door. Most homes go with 4.</p>
 
-    <div class="choice-grid" id="cam-grid">
-      </div>
+    <div class="choice-grid" id="cam-grid"></div>
 
     <button class="btn-primary" id="btn-2" disabled onclick="goTo(3)">Continue →</button>
   </div>
@@ -802,41 +801,53 @@
     <h1 class="screen-title">Build Your<br>Quote.</h1>
     <p class="screen-sub">We'll generate a custom quote for your address. Takes 10 seconds.</p>
 
-    <div class="info-note">🔒 Your info stays on your device — this quote is just for you.</div>
+    <div class="info-note">🔒 Your info stays secure — this quote is generated immediately.</div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">First Name</label>
-        <input class="form-input" type="text" id="inp-first" placeholder="First name" oninput="checkForm()" />
+    <form action="https://api.web3forms.com/submit" method="POST" id="lead-form" onsubmit="injectStateData(event)">
+      <input type="hidden" name="access_key" value="abac8e7e-a9bc-45e2-8d70-eb106ca24de9">
+      <input type="hidden" name="subject" id="hidden-subject" value="New Security Lead">
+      <input type="hidden" name="from_name" value="Alder Package Builder">
+      
+      <input type="hidden" name="Package_Type" id="hidden-pkg-type" value="">
+      <input type="hidden" name="Camera_Count" id="hidden-cams" value="">
+      <input type="hidden" name="Alarm_Points" id="hidden-points" value="">
+      <input type="hidden" name="Selected_Addons" id="hidden-addons" value="">
+      <input type="hidden" name="Monthly_Quoted_Rate" id="hidden-rate" value="">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input class="form-input" type="text" name="First_Name" id="inp-first" placeholder="First name" required oninput="checkForm()" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" type="text" name="Last_Name" id="inp-last" placeholder="Last name" required oninput="checkForm()" />
+        </div>
       </div>
+
       <div class="form-group">
-        <label class="form-label">Last Name</label>
-        <input class="form-input" type="text" id="inp-last" placeholder="Last name" oninput="checkForm()" />
+        <label class="form-label">Home Address</label>
+        <input class="form-input" type="text" name="Street_Address" id="inp-address" placeholder="123 Main St" required oninput="checkForm()" />
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="form-label">Home Address</label>
-      <input class="form-input" type="text" id="inp-address" placeholder="123 Main St" oninput="checkForm()" />
-    </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input class="form-input" type="text" name="City" id="inp-city" placeholder="City" required oninput="checkForm()" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">State</label>
+          <input class="form-input" type="text" name="State" id="inp-state" placeholder="UT" maxlength="2" required oninput="checkForm()" />
+        </div>
+      </div>
 
-    <div class="form-row">
       <div class="form-group">
-        <label class="form-label">City</label>
-        <input class="form-input" type="text" id="inp-city" placeholder="City" oninput="checkForm()" />
+        <label class="form-label">Phone Number</label>
+        <input class="form-input" type="tel" name="Phone_Number" id="inp-phone" placeholder="(385) 555-0100" required oninput="checkForm()" />
       </div>
-      <div class="form-group">
-        <label class="form-label">State</label>
-        <input class="form-input" type="text" id="inp-state" placeholder="UT" maxlength="2" oninput="checkForm()" />
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label class="form-label">Phone Number</label>
-      <input class="form-input" type="tel" id="inp-phone" placeholder="(385) 555-0100" oninput="checkForm()" />
-    </div>
-
-    <button class="btn-primary" id="btn-4" disabled onclick="buildQuote()">Generate My Quote →</button>
+      <button type="submit" class="btn-primary" id="btn-4" disabled>Generate My Quote →</button>
+    </form>
   </div>
 
   <div class="screen" id="screen-5">
@@ -934,7 +945,7 @@
 </main>
 
 <script>
-  // ── STATE ──
+  // ── STATE ENGINE ──
   const state = {
     type: null,
     cams: null,
@@ -951,7 +962,7 @@
     phone: ''
   };
 
-  // ── PRICING ──
+  // ── RATE SCHEDULING TABLES ──
   const PRICES = {
     cameras: { 2: 44, 4: 54, 6: 64, 8: 74 },
     combo:   { 2: 69, 4: 89, 6: 99, 8: 109 }
@@ -961,7 +972,7 @@
     combo:   { 2: 109, 4: 134, 6: 154, 8: 174 }
   };
 
-  // ── STEP NAVIGATION ──
+  // ── STEP CONTEXT NAVIGATION ──
   function goTo(n) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('screen-' + n).classList.add('active');
@@ -988,7 +999,7 @@
     }
   }
 
-  // ── STEP 1 ──
+  // ── APPLICATION LAYER FLOW ENGINE ──
   function selectType(el, type) {
     document.querySelectorAll('#screen-1 .choice-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
@@ -997,7 +1008,6 @@
     state.cams = null;
   }
 
-  // ── STEP 2 ──
   function buildCamGrid() {
     const grid = document.getElementById('cam-grid');
     const prices = PRICES[state.type];
@@ -1039,7 +1049,6 @@
     document.getElementById('btn-2').disabled = false;
   }
 
-  // ── ALARM TIER ──
   function selectAlarmTier(pts, extra) {
     [6, 8, 12].forEach(p => {
       const card = document.getElementById('alarm-' + p);
@@ -1051,7 +1060,6 @@
     state.alarmExtra = extra;
   }
 
-  // ── STEP 3 ──
   function toggleAddon(id, price) {
     const card = document.getElementById('addon-' + id);
     if (state.addons[id]) {
@@ -1064,7 +1072,6 @@
     state.addonTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
   }
 
-  // ── STEP 4 ──
   function checkForm() {
     const first = document.getElementById('inp-first').value.trim();
     const last = document.getElementById('inp-last').value.trim();
@@ -1074,8 +1081,9 @@
     document.getElementById('btn-4').disabled = !(first && last && addr && city && phone);
   }
 
-  // ── STEP 5: DECENTRALIZED WEB3 ENGINE SYNC ──
-  function buildQuote() {
+  // ── INJECT ENGINE DATA BEFORE SUBMIT ──
+  function injectStateData(event) {
+    // 1. Lock UI values into memory object
     state.name = document.getElementById('inp-first').value.trim() + ' ' + document.getElementById('inp-last').value.trim();
     state.address = document.getElementById('inp-address').value.trim();
     state.city = document.getElementById('inp-city').value.trim();
@@ -1092,36 +1100,17 @@
       ? `${state.cams}-Camera NVR + Full Alarm System`
       : `${state.cams}-Camera NVR Package`;
 
-    // ── HIGH-REDUNDANCY BACKGROUND DATA HANDLER ──
     const chosenAddons = Object.keys(state.addons).length > 0 ? Object.keys(state.addons).join(', ') : 'None';
-    
-    const payload = {
-      access_key: "abac8e7e-a9bc-45e2-8d70-eb106ca24de9", /* Swapped to strictly lowercase key to match endpoint rules */
-      subject: `🔥 New Security Lead: ${state.name} ($${total}/mo)`,
-      from_name: "Alder Package Builder",
-      Name: state.name,
-      Phone: state.phone,
-      Address: `${state.address}, ${state.city} ${state.stateAbbr}`,
-      Package: pkgLabel,
-      "Alarm Points": state.type === 'combo' ? `${state.alarmPts} Points` : 'N/A',
-      "Add-ons Selected": chosenAddons,
-      "Quoted Rate": `$${total}/mo`
-    };
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(data => console.log("Web3 Pipeline Handshake Success:", data))
-    .catch(err => console.error("Web3 Pipeline Handshake Error:", err));
-    // ──────────────────────────────────────────────
+    // 2. Map calculations to standard hidden form elements for Web3Forms parsing
+    document.getElementById('hidden-subject').value = `🔥 New Security Lead: ${state.name} ($${total}/mo)`;
+    document.getElementById('hidden-pkg-type').value = state.type === 'combo' ? 'Cameras + Alarm' : 'Cameras Only';
+    document.getElementById('hidden-cams').value = `${state.cams} Cameras`;
+    document.getElementById('hidden-points').value = state.type === 'combo' ? `${state.alarmPts} Points` : 'N/A';
+    document.getElementById('hidden-addons').value = chosenAddons;
+    document.getElementById('hidden-rate').value = `$${total}/mo`;
 
-    // ── UPDATE DISPLAYS ──
+    // 3. Populate final screen display content
     document.getElementById('q-name').textContent = state.name;
     document.getElementById('q-address').textContent = state.address + ', ' + state.city + ' ' + state.stateAbbr;
     document.getElementById('q-price').innerHTML = `<sup>$</sup>${total}<sub>/mo</sub>`;
@@ -1151,10 +1140,14 @@
     document.getElementById('deal-monitoring').style.display = state.type === 'combo' ? 'flex' : 'none';
 
     save();
-    goTo(5);
+
+    // 4. Force screen state forward to look clean before form targets endpoint
+    setTimeout(() => {
+      goTo(5);
+    }, 100);
   }
 
-  // ── LOCALSTORAGE ──
+  // ── DATA CACHING SUB-ROUTINES ──
   function save() {
     try { localStorage.setItem('alder_quote', JSON.stringify(state)); } catch(e) {}
   }
@@ -1179,7 +1172,18 @@
           const card = document.getElementById('addon-' + id);
           if (card) card.classList.add('selected');
         });
-        if (s.name) buildQuote();
+        
+        // Render view immediately if data exists
+        const total = state.price + state.addonTotal + state.alarmExtra;
+        const msrpTotal = state.msrp + state.addonTotal + state.alarmExtra;
+        document.getElementById('q-name').textContent = state.name;
+        document.getElementById('q-address').textContent = state.address + ', ' + state.city + ' ' + state.stateAbbr;
+        document.getElementById('q-price').innerHTML = `<sup>$</sup>${total}<sub>/mo</sub>`;
+        document.getElementById('q-msrp').textContent = `Standard Rate: $${msrpTotal}/mo`;
+        document.getElementById('q-save-pill').textContent = `You save $${msrpTotal - total}/mo`;
+        document.getElementById('q-total').textContent = `$${total}/mo + tax`;
+        document.getElementById('q-address-box').innerHTML = `<strong>${state.name}</strong>${state.address}<br>${state.city}, ${state.stateAbbr} · ${state.phone}`;
+        goTo(5);
       }
     } catch(e) {}
   }
