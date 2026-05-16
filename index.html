@@ -2,1136 +2,1202 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kenneth Tupea — Alder Home Security</title>
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7R5P555EE8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-7R5P555EE8');
-  </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Build Your Alder Security Package</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #0f1f3d;
-      --navy-mid: #1a3260;
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --sky: #e8f0fe;
-      --white: #ffffff;
-      --off: #f8f9fc;
-      --text: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --gold: #f59e0b;
-      --green: #22c55e;
-      --red: #ef4444;
+      --black:  #08090b;
+      --card:   #0f1115;
+      --card2:  #161820;
+      --blue:   #1d6fe8;
+      --blue-hi:#4d94ff;
+      --white:  #f4f5f7;
+      --muted:  #6b7280;
+      --border: rgba(255,255,255,0.07);
+      --green:  #16a34a;
+      --green-bg: rgba(22,163,74,0.1);
+      --gold:   #f59e0b;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: #08090b; }
 
     body {
-      background: #ffffff;
-      color: #1e293b;
-      font-family: 'Sora', sans-serif;
-      font-weight: 400;
+      background: #08090b;
+      color: #f4f5f7;
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── TOP BAR ── */
-    .topbar {
-      background: #0f1f3d;
-      color: rgba(255,255,255,0.7);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-align: center;
-      padding: 0.55rem 1rem;
-    }
-    .topbar strong { color: #f59e0b; }
-
-    /* ── NAV ── */
-    nav {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 1rem 2rem;
+    /* ── HEADER ── */
+    header {
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+      background: rgba(8,9,11,0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); /* Safari Support */
+      z-index: 50;
     }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .alder-badge {
-      background: #0f1f3d;
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      padding: 0.35rem 0.75rem;
-      border-radius: 4px;
-    }
-    .nav-rep {
-      font-size: 0.82rem;
-      color: #64748b;
-    }
-    .nav-rep strong { color: #0f1f3d; font-weight: 600; }
-    .nav-cta {
-      background: #2563eb;
-      color: white;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.6rem 1.4rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: #3b82f6; }
-
-    /* ── HERO ── */
-    .hero {
-      background: #0f1f3d;
-      background: linear-gradient(135deg, #0f1f3d 0%, #1a3260 60%, #1e3a8a 100%);
-      color: white;
-      padding: 5rem 2rem 4rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at top right, rgba(255,255,255,0.04) 0%, transparent 60%),
-                  radial-gradient(ellipse at bottom left, rgba(255,255,255,0.03) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .hero-shield {
-      width: 72px;
-      height: 72px;
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 2rem;
-      animation: fadeUp 0.6s ease forwards;
-    }
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+    .logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #f59e0b;
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.1s ease forwards;
     }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.2s ease forwards;
-    }
-    .hero h1 span { color: #f59e0b; }
-    .hero-sub {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.7);
-      max-width: 520px;
-      margin: 0 auto 2rem;
-      line-height: 1.65;
-      font-weight: 300;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.3s ease forwards;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.4s ease forwards;
-    }
-    .btn-hero {
-      background: #f59e0b;
-      color: #0f1f3d;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.85rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-hero:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,158,11,0.35); }
-    .btn-hero-outline {
-      border: 1.5px solid rgba(255,255,255,0.3);
-      color: white;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 0.85rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-hero-outline:hover { border-color: white; background: rgba(255,255,255,0.07); }
-
-    .hero-trust {
-      margin-top: 3rem;
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.5s ease forwards;
-    }
-    .trust-item {
-      text-align: center;
-    }
-    .trust-num {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #f59e0b;
-    }
-    .trust-label {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.55);
+    .logo span { color: #1d6fe8; }
+    .header-badge {
+      background: rgba(22,163,74,0.1);
+      border: 1px solid rgba(22,163,74,0.3);
+      color: #4ade80;
       font-family: 'DM Mono', monospace;
-      letter-spacing: 0.08em;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-top: 0.2rem;
-    }
-
-    /* ── REP CARD ── */
-    .rep-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 2rem;
-      max-width: 680px;
-      margin: -2.5rem auto 0;
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    .rep-avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #0f1f3d, #2563eb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: white;
-      flex-shrink: 0;
-    }
-    .rep-name {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #0f1f3d;
-    }
-    .rep-title {
-      font-size: 0.8rem;
-      color: #64748b;
-      margin-top: 0.2rem;
-    }
-    .rep-phone {
-      margin-top: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .rep-phone a {
-      font-family: 'DM Mono', monospace;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #2563eb;
-      text-decoration: none;
-      letter-spacing: 0.04em;
-    }
-    .rep-phone a:hover { color: #0f1f3d; }
-    .rep-note {
-      font-size: 0.78rem;
-      color: #64748b;
-      margin-top: 0.4rem;
-    }
-    .rep-divider {
-      width: 1px;
-      height: 70px;
-      background: #e2e8f0;
-      flex-shrink: 0;
-    }
-    .rep-right {
-      flex: 1;
-    }
-    .rep-badges {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.6rem;
-    }
-    .badge {
-      background: #e8f0fe;
-      color: #2563eb;
-      font-size: 0.68rem;
-      font-weight: 600;
-      padding: 0.3rem 0.65rem;
+      padding: 0.35rem 0.85rem;
       border-radius: 20px;
-      letter-spacing: 0.04em;
-    }
-    .badge.green { background: #dcfce7; color: #15803d; }
-    .badge.gold { background: #fef3c7; color: #92400e; }
-
-    /* ── SECTION WRAPPER ── */
-    .section { padding: 5rem 2rem; }
-    .section.gray { background: #f8f9fc; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #2563eb;
-      margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      color: #0f1f3d;
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
-    }
-    .section-sub {
-      font-size: 1rem;
-      color: #64748b;
-      line-height: 1.65;
-      max-width: 540px;
     }
 
-    /* ── PACKAGES ── */
-    .packages-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      padding: 1.5rem 2rem 0;
+      max-width: 640px;
+      margin: 0 auto;
     }
-    .package-card {
-      border: 1.5px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 2rem;
-      background: white;
-      transition: box-shadow 0.2s, border-color 0.2s;
-      position: relative;
-    }
-    .package-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-color: #3b82f6; }
-    .package-card.featured {
-      border-color: #2563eb;
-      box-shadow: 0 4px 24px rgba(37,99,235,0.15);
-    }
-    .featured-tag {
-      position: absolute;
-      top: -1px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #2563eb;
-      color: white;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.3rem 1rem;
-      border-radius: 0 0 8px 8px;
-    }
-    .package-icon { font-size: 2.2rem; margin-bottom: 1rem; }
-    .package-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #0f1f3d;
-      margin-bottom: 0.3rem;
-    }
-    .package-desc {
-      font-size: 0.85rem;
-      color: #64748b;
-      line-height: 1.55;
-      margin-bottom: 1.5rem;
-    }
-    .package-price {
+    .progress-steps {
       display: flex;
-      align-items: baseline;
-      gap: 0.3rem;
-      margin-bottom: 0.3rem;
+      align-items: center;
+      gap: 0;
     }
-    .price-dollar { font-size: 1rem; font-weight: 600; color: #0f1f3d; margin-top: 0.3rem; }
-    .price-num { font-size: 2.8rem; font-weight: 700; color: #0f1f3d; line-height: 1; }
-    .price-period { font-size: 0.82rem; color: #64748b; }
-    .price-note { font-size: 0.72rem; color: #64748b; margin-bottom: 1.5rem; }
-    .package-features {
-      list-style: none;
+    .progress-step {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
-    .package-features li {
-      display: flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.88rem;
-      color: #1e293b;
-    }
-    .check { color: #22c55e; font-size: 1rem; }
-    .package-cta {
-      display: block;
-      text-align: center;
-      padding: 0.8rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .package-cta.primary { background: #2563eb; color: white; }
-    .package-cta.primary:hover { background: #3b82f6; }
-    .package-cta.outline { border: 1.5px solid #e2e8f0; color: #0f1f3d; }
-    .package-cta.outline:hover { border-color: #2563eb; color: #2563eb; }
-
-    /* ── PRODUCTS GRID ── */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 1rem;
-      margin-top: 3rem;
-    }
-    .product-chip {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 1.2rem 0.8rem;
-      text-align: center;
-      transition: box-shadow 0.2s, border-color 0.2s;
-    }
-    .product-chip:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); border-color: #3b82f6; }
-    .product-emoji { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .product-name { font-size: 0.75rem; font-weight: 500; color: #1e293b; line-height: 1.3; }
-
-    /* ── COMPARE TABLE ── */
-    .compare-wrap { overflow-x: auto; margin-top: 3rem; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      min-width: 600px;
-    }
-    thead tr { border-bottom: 2px solid #e2e8f0; }
-    th {
-      padding: 1rem 1.2rem;
-      text-align: center;
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: #64748b;
-    }
-    th.alder-col {
-      background: #0f1f3d;
-      color: white;
-      border-radius: 8px 8px 0 0;
-    }
-    th.row-label { text-align: left; color: #1e293b; }
-    td {
-      padding: 0.85rem 1.2rem;
-      text-align: center;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    td.row-label { text-align: left; font-size: 0.85rem; color: #1e293b; }
-    td.alder-col { background: rgba(37,99,235,0.04); }
-    .c-yes { color: #22c55e; font-size: 1.1rem; }
-    .c-no { color: #ef4444; font-size: 1.1rem; }
-    .c-opt {
-      font-size: 0.72rem;
-      color: #64748b;
-      font-family: 'DM Mono', monospace;
-    }
-    tr:last-child td { border-bottom: none; }
-
-    /* ── GUARANTEES ── */
-    .guarantee-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .guarantee-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 2rem;
-    }
-    .guarantee-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .guarantee-title { font-size: 1.1rem; font-weight: 700; color: #0f1f3d; margin-bottom: 0.5rem; }
-    .guarantee-text { font-size: 0.87rem; color: #64748b; line-height: 1.65; }
-
-    /* ── REVIEWS ── */
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .review-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 1.75rem;
+      gap: 0.4rem;
+      flex: 1;
       position: relative;
     }
-    .review-stars { color: #f59e0b; font-size: 1rem; letter-spacing: 0.05em; margin-bottom: 1rem; }
-    .review-text { font-size: 0.9rem; color: #1e293b; line-height: 1.65; margin-bottom: 1.25rem; font-style: italic; }
-    .review-author {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .review-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: white;
-      flex-shrink: 0;
-    }
-    .review-name { font-weight: 600; font-size: 0.88rem; color: #0f1f3d; }
-    .review-city { font-size: 0.75rem; color: #64748b; }
-    .verified-badge {
+    .progress-step::after {
+      content: '';
       position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      font-size: 0.62rem;
-      font-family: 'DM Mono', monospace;
-      color: #22c55e;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      top: 14px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background: rgba(255,255,255,0.07);
+      z-index: 0;
     }
-
-    /* ── CTA BANNER ── */
-    .cta-banner {
-      background: #0f1f3d;
-      background: linear-gradient(135deg, #0f1f3d, #1a3260);
+    .progress-step:last-child::after { display: none; }
+    .step-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.07);
+      background: #0f1115;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: #6b7280;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+    .step-dot.active {
+      border-color: #1d6fe8;
+      background: #1d6fe8;
       color: white;
-      padding: 4rem 2rem;
-      text-align: center;
     }
-    .cta-banner h2 {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      margin-bottom: 0.75rem;
+    .step-dot.done {
+      border-color: #16a34a;
+      background: #16a34a;
+      color: white;
     }
-    .cta-banner p { color: rgba(255,255,255,0.65); margin-bottom: 2rem; font-size: 1rem; }
-    .cta-phone {
+    .step-label {
+      font-size: 0.6rem;
       font-family: 'DM Mono', monospace;
-      font-size: 2rem;
-      font-weight: 500;
-      color: #f59e0b;
-      letter-spacing: 0.05em;
-      display: block;
-      text-decoration: none;
-      margin-bottom: 0.5rem;
-    }
-    .cta-phone:hover { color: #fcd34d; }
-    .cta-sub { font-size: 0.8rem; color: rgba(255,255,255,0.4); font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #0f1f3d;
-      color: rgba(255,255,255,0.4);
-      padding: 2rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
       text-align: center;
-      font-size: 0.75rem;
-      font-family: 'DM Mono', monospace;
-      letter-spacing: 0.06em;
-      line-height: 1.8;
+      transition: color 0.3s;
     }
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .progress-step.active .step-label { color: #4d94ff; }
+    .progress-step.done .step-label { color: #4ade80; }
 
-    /* ── ANIMATIONS ── */
+    /* ── MAIN ── */
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    /* ── SCREEN ── */
+    .screen {
+      display: none;
+      animation: fadeUp 0.35s ease forwards;
+    }
+    .screen.active { display: block; }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .rep-card { flex-direction: column; text-align: center; }
-      .rep-divider { width: 100%; height: 1px; }
-      .rep-badges { justify-content: center; }
-      .rep-phone { justify-content: center; }
-      .hero-trust { gap: 1.5rem; }
-      nav { padding: 1rem; }
-      .nav-rep { display: none; }
+    .screen-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #4d94ff;
+      margin-bottom: 0.5rem;
+    }
+    .screen-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .screen-sub {
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.55;
+      margin-bottom: 2rem;
+    }
+
+    /* ── CHOICE CARDS ── */
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .choice-grid.single { grid-template-columns: 1fr; }
+    .choice-card {
+      border: 1.5px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      background: #0f1115;
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .choice-card:hover {
+      border-color: rgba(29,111,232,0.4);
+      background: #161820;
+      transform: translateY(-1px);
+    }
+    .choice-card.selected {
+      border-color: #1d6fe8;
+      background: rgba(29,111,232,0.08) !important; /* Forces Safari compliance */
+    }
+    .choice-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 0.75rem; right: 0.85rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #4d94ff;
+      background: rgba(29,111,232,0.15);
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .choice-card.recommended::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      background: #1d6fe8;
+      color: white;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0 0 6px 6px;
+      white-space: nowrap;
+    }
+    .choice-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .choice-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+    .choice-desc { font-size: 0.78rem; color: #6b7280; line-height: 1.45; }
+    .choice-price {
+      margin-top: 0.75rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #4d94ff;
+    }
+    .choice-price span { font-size: 0.8rem; font-family: 'Barlow', sans-serif; font-weight: 400; color: #6b7280; }
+    .choice-was {
+      font-size: 0.72rem;
+      color: #6b7280;
+      text-decoration: line-through;
+      margin-top: 0.1rem;
+    }
+    .choice-save {
+      font-size: 0.7rem;
+      color: #4ade80;
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+    }
+
+    /* ── ADDON TOGGLE ── */
+    .addon-card {
+      border: 1.5px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: #0f1115;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .addon-card:hover { border-color: rgba(29,111,232,0.4); background: #161820; }
+    .addon-card.selected { border-color: #1d6fe8; background: rgba(29,111,232,0.08); }
+    .addon-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .addon-info { flex: 1; }
+    .addon-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+    .addon-desc { font-size: 0.78rem; color: #6b7280; }
+    .addon-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 800; color: #4d94ff; flex-shrink: 0; }
+    .addon-check {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.07);
+      background: #0f1115;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      color: transparent;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .addon-card.selected .addon-check {
+      background: #1d6fe8;
+      border-color: #1d6fe8;
+      color: white;
+    }
+
+    /* ── FORM ── */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+    .form-input {
+      width: 100%;
+      background: #0f1115;
+      border: 1.5px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      color: #f4f5f7;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none; /* Safari normalization */
+    }
+    .form-input:focus { border-color: #1d6fe8; }
+    .form-input::placeholder { color: #3a3d45; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+    /* ── QUOTE SUMMARY ── */
+    .quote-header {
+      background: #1d6fe8;
+      border-radius: 12px 12px 0 0;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-header::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .quote-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.4rem;
+    }
+    .quote-name-display {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .quote-pkg-display {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.2rem;
+    }
+    .quote-price-block {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .quote-price-main {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      color: white;
+    }
+    .quote-price-main sup { font-size: 1.8rem; vertical-align: top; margin-top: 0.5rem; display: inline-block; }
+    .quote-price-main sub { font-size: 1rem; color: rgba(255,255,255,0.6); font-family: 'Barlow', sans-serif; font-weight: 400; }
+    .quote-msrp {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: line-through;
+      margin-bottom: 0.3rem;
+    }
+    .quote-savings-pill {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 20px;
+      margin-bottom: 0.3rem;
+      display: inline-block;
+    }
+
+    .quote-body {
+      background: #0f1115;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+    }
+    .quote-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.88rem;
+    }
+    .quote-row:last-child { border-bottom: none; }
+    .quote-row-label { color: #6b7280; }
+    .quote-row-val { font-weight: 600; color: #f4f5f7; }
+    .quote-row-val.green { color: #4ade80; }
+    .quote-row-val.strikethrough { text-decoration: line-through; color: #6b7280; font-weight: 400; }
+    .quote-row.highlight { background: rgba(22,163,74,0.1); }
+    .quote-row.highlight .quote-row-label { color: #86efac; }
+    .quote-row.highlight .quote-row-val { color: #4ade80; font-weight: 700; }
+
+    .quote-breakdown {
+      background: #161820;
+      border-radius: 10px;
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+    .qb-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6b7280;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* ── DEAL CALLOUT ── */
+    .deal-box {
+      background: rgba(22,163,74,0.1);
+      border: 1px solid rgba(22,163,74,0.3);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+    .deal-box-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #4ade80;
+      margin-bottom: 0.35rem;
+    }
+    .deal-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .deal-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #86efac;
+    }
+    .deal-item::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
+
+    /* ── ADDRESS DISPLAY ── */
+    .address-box {
+      background: #161820;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+    .address-box strong { color: #f4f5f7; display: block; margin-bottom: 0.15rem; font-size: 0.9rem; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: #1d6fe8;
+      color: white;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.15s, transform 0.1s;
+      -webkit-appearance: none;
+    }
+    .btn-primary:hover { background: #4d94ff; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      color: #6b7280;
+      font-size: 0.82rem;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 1.5rem;
+      transition: color 0.15s;
+    }
+    .btn-back:hover { color: #f4f5f7; }
+
+    .btn-restart {
+      display: block;
+      width: 100%;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.07);
+      color: #6b7280;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.75rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-restart:hover { border-color: #f4f5f7; color: #f4f5f7; }
+
+    /* ── CTA ── */
+    .cta-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: white;
+      color: #08090b;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: opacity 0.15s;
+    }
+    .cta-call:hover { opacity: 0.9; }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 1.5rem 0;
+    }
+
+    .fine-print {
+      font-size: 0.72rem;
+      color: #3a3d45;
+      text-align: center;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    .info-note {
+      background: rgba(29,111,232,0.07);
+      border: 1px solid rgba(29,111,232,0.15);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 0.8rem;
+      color: #93c5fd;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 480px) {
+      .choice-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      header { padding: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="topbar">
-    You just met <strong>Kenneth Tupea</strong> at your door — here's everything you need to know. Questions? Call anytime: <strong>(385) 256-0204</strong>
+<header>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="https://kennethatalder.pages.dev" style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:0.35rem;" onmouseover="this.style.color='#f4f5f7'" onmouseout="this.style.color='#6b7280'">← Kenneth's Page</a>
+    <div style="width:1px;height:16px;background:rgba(255,255,255,0.07);"></div>
+    <div class="logo">ALDER<span>.</span></div>
   </div>
+  <div class="header-badge">✦ Free Install Included</div>
+</header>
 
-  <nav>
-    <div class="nav-brand">
-      <div class="alder-badge">ALDER</div>
-      <div class="nav-rep">Rep: <strong>Kenneth Tupea</strong></div>
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="progress-step active" id="ps-1">
+      <div class="step-dot active" id="sd-1">1</div>
+      <div class="step-label">Package</div>
     </div>
-    <a href="tel:3852560204" class="nav-cta">📞 Call Kenneth</a>
-  </nav>
-
-  <div class="hero">
-    <div class="hero-shield">🛡️</div>
-    <div class="hero-eyebrow">Alder Home Security · Mississippi & The South</div>
-    <h1>Your Home, Protected.<br><span>By Someone You Met.</span></h1>
-    <p class="hero-sub">
-      I'm Kenneth — your local Alder security rep. Everything I told you at your door is right here. No pressure, no runaround, just the best home security in the South.
-    </p>
-    <div class="hero-ctas">
-      <a href="tel:3852560204" class="btn-hero">📞 (385) 256-0204</a>
-      <a href="#contact" onclick="document.getElementById('clicked-package').value='Hero Section - Build My Quote Button';" class="btn-hero-outline">Build My Quote →</a>
+    <div class="progress-step" id="ps-2">
+      <div class="step-dot" id="sd-2">2</div>
+      <div class="step-label">Cameras</div>
     </div>
-    <div class="hero-trust">
-      <div class="trust-item">
-        <div class="trust-num">24/7</div>
-        <div class="trust-label">Monitoring</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-num">2K</div>
-        <div class="trust-label">Camera Quality</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-num">$0</div>
-        <div class="trust-label">Install Cost</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-num">Free</div>
-        <div class="trust-label">Lifetime Parts & Labor</div>
-      </div>
+    <div class="progress-step" id="ps-3">
+      <div class="step-dot" id="sd-3">3</div>
+      <div class="step-label">Add-ons</div>
+    </div>
+    <div class="progress-step" id="ps-4">
+      <div class="step-dot" id="sd-4">4</div>
+      <div class="step-label">Your Info</div>
+    </div>
+    <div class="progress-step" id="ps-5">
+      <div class="step-dot" id="sd-5">5</div>
+      <div class="step-label">Your Quote</div>
     </div>
   </div>
+</div>
 
-  <div style="padding: 0 2rem; max-width: 740px; margin: 0 auto;">
-    <div class="rep-card">
-      <div class="rep-avatar">KT</div>
-      <div>
-        <div class="rep-name">Kenneth Tupea</div>
-        <div class="rep-title">Alder Home Security — Sales Representative</div>
-        <div class="rep-phone">
-          <span>📞</span>
-          <a href="tel:3852560204">(385) 256-0204</a>
-        </div>
-        <div class="rep-note">Call or text anytime — I'm your direct contact, no call centers.</div>
+<main>
+
+  <div class="screen active" id="screen-1">
+    <div class="screen-tag">Step 1 of 4</div>
+    <h1 class="screen-title">What Kind of<br>Coverage?</h1>
+    <p class="screen-sub">Choose the protection that fits your home. Both include free professional installation.</p>
+
+    <div class="choice-grid">
+      <div class="choice-card" data-type="cameras" onclick="selectType(this,'cameras')">
+        <div class="choice-icon">📹</div>
+        <div class="choice-title">Cameras Only</div>
+        <div class="choice-desc">NVR camera system with 2K footage, local HDD storage, and 24/7 recording.</div>
+        <div class="choice-price">from $44 <span>/mo</span></div>
+        <div class="choice-was">Standard from $69/mo</div>
+        <div class="choice-save">Save up to $25/mo</div>
       </div>
-      <div class="rep-divider"></div>
-      <div class="rep-right">
-        <div style="font-size:0.8rem;color:#64748b;margin-bottom:0.4rem;">Specialties</div>
-        <div class="rep-badges">
-          <span class="badge">NVR Cameras</span>
-          <span class="badge">Alarm Systems</span>
-          <span class="badge green">Free Install</span>
-          <span class="badge gold">Mississippi</span>
-        </div>
+      <div class="choice-card recommended" data-type="combo" onclick="selectType(this,'combo')">
+        <div class="choice-icon">🔒</div>
+        <div class="choice-title">Cameras + Alarm</div>
+        <div class="choice-desc">Full security — NVR cameras AND complete alarm system with 24/7 professional monitoring.</div>
+        <div class="choice-price">from $69 <span>/mo</span></div>
+        <div class="choice-was">Standard from $109/mo</div>
+        <div class="choice-save">Save up to $40/mo</div>
       </div>
     </div>
-  </div>
 
-  <div class="section" id="packages">
-    <div class="container">
-      <div class="section-label">My Packages</div>
-      <div class="section-title">Simple Pricing.<br>No Surprises.</div>
-      <p class="section-sub">Three package types — cameras only, alarm only, or a combo of both. All include professional installation, 24/7 monitoring, and free lifetime parts & labor.</p>
+    <button class="btn-primary" id="btn-1" disabled onclick="goTo(2)">Continue →</button>
 
-      <div style="display:flex;gap:0.75rem;margin-top:2.5rem;flex-wrap:wrap;">
-        <div style="background:#0f1f3d;color:white;padding:0.5rem 1.2rem;border-radius:20px;font-size:0.82rem;font-weight:600;">📹 Camera Packages</div>
-        <div style="background:#f8f9fc;color:#0f1f3d;border:1px solid #e2e8f0;padding:0.5rem 1.2rem;border-radius:20px;font-size:0.82rem;font-weight:600;">🔒 Combo Packages</div>
-        <div style="background:#f8f9fc;color:#0f1f3d;border:1px solid #e2e8f0;padding:0.5rem 1.2rem;border-radius:20px;font-size:0.82rem;font-weight:600;">🚪 + Doorbell Add-on</div>
+    <div style="margin-top:2rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#6b7280;margin-bottom:0.6rem;">See It In Action</div>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid rgba(29,111,232,0.35);box-shadow:0 0 32px rgba(29,111,232,0.15);">
+        <iframe
+          src="https://www.youtube.com/embed/xpLHM49s4b8?rel=0&modestbranding=1"
+          title="Alder NVR Camera System"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width:100%;aspect-ratio:16/9;display:block;border:none;">
+        </iframe>
       </div>
-
-      <div style="margin-top:1.5rem;margin-bottom:0.75rem;">
-        <div class="section-label" style="margin-bottom:0.3rem;">NVR Camera Only — Cameras go up $10 every 2 added</div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-bottom:3rem;">
-
-        <div class="package-card" style="padding:1.5rem;">
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#64748b;margin-bottom:0.5rem;">2 Cameras</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar">$</span><span class="price-num" style="font-size:2.2rem;">44</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 2 x 2K Outdoor Cameras</li>
-            <li><span class="check">✓</span> 2TB HDD Local Storage</li>
-            <li><span class="check">✓</span> Color Night Vision</li>
-            <li><span class="check">✓</span> 24/7 Recording</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='2 Cameras ($44/mo)';" class="package-cta outline">Get 2 Cameras</a>
-        </div>
-
-        <div class="package-card featured" style="padding:1.5rem;">
-          <div class="featured-tag">Most Popular</div>
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#64748b;margin-bottom:0.5rem;">4 Cameras</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar">$</span><span class="price-num" style="font-size:2.2rem;">54</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 4 x 2K Outdoor Cameras</li>
-            <li><span class="check">✓</span> 2TB HDD Local Storage</li>
-            <li><span class="check">✓</span> Color Night Vision</li>
-            <li><span class="check">✓</span> 24/7 Recording + AI Detection</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='4 Cameras ($54/mo)';" class="package-cta primary">Get 4 Cameras</a>
-        </div>
-
-        <div class="package-card" style="padding:1.5rem;">
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#64748b;margin-bottom:0.5rem;">6 Cameras</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar">$</span><span class="price-num" style="font-size:2.2rem;">64</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 6 x 2K Outdoor Cameras</li>
-            <li><span class="check">✓</span> 2TB HDD Local Storage</li>
-            <li><span class="check">✓</span> Color Night Vision</li>
-            <li><span class="check">✓</span> 24/7 Recording + AI Detection</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='6 Cameras ($64/mo)';" class="package-cta outline">Get 6 Cameras</a>
-        </div>
-
-        <div class="package-card" style="padding:1.5rem;">
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#64748b;margin-bottom:0.5rem;">8 Cameras</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar">$</span><span class="price-num" style="font-size:2.2rem;">74</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 8 x 2K Outdoor Cameras</li>
-            <li><span class="check">✓</span> 2TB HDD Local Storage</li>
-            <li><span class="check">✓</span> Color Night Vision</li>
-            <li><span class="check">✓</span> 24/7 Recording + AI Detection</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='8 Cameras ($74/mo)';" class="package-cta outline">Get 8 Cameras</a>
-        </div>
-
-      </div>
-
-      <div style="margin-bottom:0.75rem;">
-        <div class="section-label" style="margin-bottom:0.3rem;">Combo — Cameras + Full Alarm System</div>
-        <p style="font-size:0.85rem;color:#64748b;">Everything in the camera package PLUS the complete Alder alarm system — sensors, panel, monitoring, and more.</p>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-bottom:3rem;">
-
-        <div class="package-card" style="padding:1.5rem;border-color:#7c3aed33;">
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#7c3aed;margin-bottom:0.5rem;">2 Cam + Alarm</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar" style="color:#7c3aed;">$</span><span class="price-num" style="font-size:2.2rem;color:#7c3aed;">69</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 2 x 2K NVR Cameras</li>
-            <li><span class="check">✓</span> Full Alarm System</li>
-            <li><span class="check">✓</span> 24/7 Pro Monitoring</li>
-            <li><span class="check">✓</span> Door, Motion & Smoke Sensors</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='2 Cams + Alarm ($69/mo)';" class="package-cta outline">Get This Combo</a>
-        </div>
-
-        <div class="package-card" style="padding:1.5rem;border-color:#7c3aed;box-shadow:0 4px 24px rgba(124,58,237,0.15);">
-          <div class="featured-tag" style="background:#7c3aed;">Best Deal</div>
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#7c3aed;margin-bottom:0.5rem;">4 Cam + Alarm</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar" style="color:#7c3aed;">$</span><span class="price-num" style="font-size:2.2rem;color:#7c3aed;">89</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 4 x 2K NVR Cameras</li>
-            <li><span class="check">✓</span> Full Alarm System</li>
-            <li><span class="check">✓</span> 24/7 Pro Monitoring</li>
-            <li><span class="check">✓</span> Door, Motion, Glass Break, Smoke</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='4 Cams + Alarm ($89/mo)';" class="package-cta primary" style="background:#7c3aed;">Get This Combo</a>
-        </div>
-
-        <div class="package-card" style="padding:1.5rem;border-color:#7c3aed33;">
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#7c3aed;margin-bottom:0.5rem;">6 Cam + Alarm</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar" style="color:#7c3aed;">$</span><span class="price-num" style="font-size:2.2rem;color:#7c3aed;">99</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 6 x 2K NVR Cameras</li>
-            <li><span class="check">✓</span> Full Alarm System</li>
-            <li><span class="check">✓</span> 24/7 Pro Monitoring</li>
-            <li><span class="check">✓</span> Full Sensor Suite</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='6 Cams + Alarm ($99/mo)';" class="package-cta outline">Get This Combo</a>
-        </div>
-
-        <div class="package-card" style="padding:1.5rem;border-color:#7c3aed33;">
-          <div style="font-size:0.7rem;font-family:'DM Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;color:#7c3aed;margin-bottom:0.5rem;">8 Cam + Alarm</div>
-          <div class="package-price" style="margin-bottom:0.25rem;">
-            <span class="price-dollar" style="color:#7c3aed;">$</span><span class="price-num" style="font-size:2.2rem;color:#7c3aed;">109</span><span class="price-period">/mo + tax</span>
-          </div>
-          <div class="price-note" style="margin-bottom:1rem;">$0 Upfront · Free Install · No Hidden Fees</div>
-          <ul class="package-features" style="gap:0.4rem;margin-bottom:1rem;">
-            <li><span class="check">✓</span> 8 x 2K NVR Cameras</li>
-            <li><span class="check">✓</span> Full Alarm System</li>
-            <li><span class="check">✓</span> 24/7 Pro Monitoring</li>
-            <li><span class="check">✓</span> Full Sensor Suite + Medical Pendant</li>
-          </ul>
-          <a href="#contact" onclick="document.getElementById('clicked-package').value='8 Cams + Alarm ($109/mo)';" class="package-cta outline">Get This Combo</a>
-        </div>
-
-      </div>
-
-      <div style="background:#f8f9fc;border:1.5px solid #e2e8f0;border-radius:16px;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-        <div style="font-size:2.5rem;">🚪</div>
-        <div style="flex:1;min-width:200px;">
-          <div style="font-weight:700;color:#0f1f3d;font-size:1.1rem;margin-bottom:0.3rem;">Doorbell Camera Add-On</div>
-          <div style="font-size:0.87rem;color:#64748b;line-height:1.55;">Add a 2K Alder Doorbell Camera to any package. See who's at the door from anywhere — 2-way audio, motion alerts, night vision. Ask Kenneth for current add-on pricing.</div>
-        </div>
-        <a href="#contact" onclick="document.getElementById('clicked-package').value='Doorbell Camera Add-On Info Requested';" class="package-cta primary" style="flex-shrink:0;padding:0.8rem 1.5rem;border-radius:8px;text-align:center;min-width:140px;">Ask About Doorbell</a>
-      </div>
-
+      <p style="font-size:0.75rem;color:#6b7280;margin-top:0.6rem;text-align:center;">The Alder NVR system — 2K, color night vision, 24/7 recording.</p>
     </div>
   </div>
 
-  <div class="section gray" id="equipment">
-    <div class="container">
-      <div class="section-label">What You Get</div>
-      <div class="section-title">Every Piece of Equipment.</div>
-      <p class="section-sub">Alder builds their own hardware. Commercial-grade, owned by you, not rented.</p>
+  <div class="screen" id="screen-2">
+    <button class="btn-back" onclick="goTo(1)">← Back</button>
+    <div class="screen-tag">Step 2 of 4</div>
+    <h1 class="screen-title">How Many<br>Cameras?</h1>
+    <p class="screen-sub">Cover your driveway, backyard, side gates, and front door. Most homes go with 4.</p>
 
-      <div class="products-grid">
-        <div class="product-chip"><div class="product-emoji">📟</div><div class="product-name">Alder Control Panel</div></div>
-        <div class="product-chip"><div class="product-emoji">📡</div><div class="product-name">Alder Puck</div></div>
-        <div class="product-chip"><div class="product-emoji">📹</div><div class="product-name">Outdoor Camera</div></div>
-        <div class="product-chip"><div class="product-emoji">🎥</div><div class="product-name">Indoor Camera</div></div>
-        <div class="product-chip"><div class="product-emoji">🔔</div><div class="product-name">Doorbell Camera</div></div>
-        <div class="product-chip"><div class="product-emoji">🔥</div><div class="product-name">Smoke Detector</div></div>
-        <div class="product-chip"><div class="product-emoji">👁️</div><div class="product-name">Motion Sensor</div></div>
-        <div class="product-chip"><div class="product-emoji">🚪</div><div class="product-name">Door/Window Sensor</div></div>
-        <div class="product-chip"><div class="product-emoji">💥</div><div class="product-name">Glass Break Detector</div></div>
-        <div class="product-chip"><div class="product-emoji">🔑</div><div class="product-name">Key Fob</div></div>
-        <div class="product-chip"><div class="product-emoji">🆘</div><div class="product-name">Medical Pendant</div></div>
-        <div class="product-chip"><div class="product-emoji">🪧</div><div class="product-name">Yard Sign</div></div>
+    <div class="choice-grid" id="cam-grid">
       </div>
-    </div>
+
+    <button class="btn-primary" id="btn-2" disabled onclick="goTo(3)">Continue →</button>
   </div>
 
-  <div class="section" id="compare">
-    <div class="container">
-      <div class="section-label">How We Stack Up</div>
-      <div class="section-title">Alder vs. The Rest.</div>
-      <p class="section-sub">Ring, Nest, Blink, Arlo — good products. Alder is in a different class for serious home protection.</p>
+  <div class="screen" id="screen-3">
+    <button class="btn-back" onclick="goTo(2)">← Back</button>
+    <div class="screen-tag">Step 3 of 4</div>
+    <h1 class="screen-title">Anything<br>to Add?</h1>
+    <p class="screen-sub">Optional upgrades — skip anything that doesn't fit.</p>
 
-      <div class="compare-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th class="row-label">Feature</th>
-              <th>Ring</th>
-              <th>Nest</th>
-              <th>Blink</th>
-              <th>Arlo</th>
-              <th class="alder-col">ALDER</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="row-label">Batteries Required</td>
-              <td><span class="c-yes">✓</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-yes">✓</span></td>
-              <td><span class="c-yes">✓</span></td>
-              <td class="alder-col"><span class="c-no">✗</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">Wi-Fi Required</td>
-              <td><span class="c-yes">✓</span></td>
-              <td><span class="c-yes">✓</span></td>
-              <td><span class="c-yes">✓</span></td>
-              <td><span class="c-yes">✓</span></td>
-              <td class="alder-col"><span class="c-opt">Optional</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">24/7 Continuous Recording</td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">Commercial Grade</td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">Local HDD Storage</td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">TV Connectivity</td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">2K Image Quality</td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">Color Night Vision</td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">Advanced AI Detection</td>
-              <td><span class="c-opt">Upgrade</span></td>
-              <td><span class="c-opt">Upgrade</span></td>
-              <td><span class="c-yes">✓</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-            <tr>
-              <td class="row-label">Crime Prevention</td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td><span class="c-no">✗</span></td>
-              <td class="alder-col"><span class="c-yes">✓</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+    <div id="alarm-tier-section" style="display:none;margin-bottom:1.5rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#4d94ff;margin-bottom:0.4rem;">Alarm System</div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.3rem;">Choose Your Point System</h2>
+      <p style="font-size:0.82rem;color:#6b7280;margin-bottom:1rem;line-height:1.5;">More points = more sensors covering more of your home. Each extra point above 6 is $1/mo.</p>
+      <div style="display:flex;flex-direction:column;gap:0.65rem;" id="alarm-tier-grid">
 
-  <div class="section gray">
-    <div class="container">
-      <div class="section-label">Alder Guarantees</div>
-      <div class="section-title">Promises That Actually Mean Something.</div>
-      <div class="guarantee-grid">
-        <div class="guarantee-card">
-          <div class="guarantee-icon">🚚</div>
-          <div class="guarantee-title">Guaranteed Free Move</div>
-          <div class="guarantee-text">If you move to a new home, an authorized dealer will provide you with a standard six-point security system at no charge. Your security moves with you.</div>
-        </div>
-        <div class="guarantee-card">
-          <div class="guarantee-icon">🔧</div>
-          <div class="guarantee-title">Free Lifetime Parts & Labor</div>
-          <div class="guarantee-text">If anything breaks, Alder fixes it — parts and labor — for the life of your system. No surprise service bills, ever.</div>
-        </div>
-        <div class="guarantee-card">
-          <div class="guarantee-icon">📱</div>
-          <div class="guarantee-title">24/7 Professional Monitoring</div>
-          <div class="guarantee-text">Real people monitoring your home around the clock. Not an app. Not an algorithm. Actual monitoring professionals ready to dispatch when it matters.</div>
-        </div>
-        <div class="guarantee-card">
-          <div class="guarantee-icon">🏆</div>
-          <div class="guarantee-title">You Own the System</div>
-          <div class="guarantee-text">Unlike Ring or Nest, you own every piece of equipment outright. It's yours — a real asset that stays with your home.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section gray" id="contact">
-    <div class="container" style="max-width: 600px;">
-      <div class="section-label" style="text-align: center;">Get in Touch</div>
-      <div class="section-title" style="text-align: center;">Request a Free Security Audit.</div>
-      <p class="section-sub" style="text-align: center; margin: 0 auto 2rem;">
-        Not ready to call? Fill this out and I'll shoot you a text to answer your questions. No pressure, no hidden fees.
-      </p>
-
-      <form action="https://api.web3forms.com/submit" method="POST" style="background: white; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 8px 32px rgba(0,0,0,0.05);">
-        <input type="hidden" name="access_key" value="Ad53400d-b69b-4448-841b-d02a3a0d3df5">
-        <input type="hidden" name="subject" value="New Alder Lead from Kenneth's Site!">
-        <input type="hidden" name="redirect" value="https://kennethatalderquote.pages.dev">
-        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-        
-        <input type="hidden" name="clicked_package" id="clicked-package" value="Direct Form Visit (No Specific Package Clicked)">
-
-        <div style="margin-bottom: 1.25rem;">
-          <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #0f1f3d; margin-bottom: 0.5rem;">Your Name</label>
-          <input type="text" name="name" required style="width: 100%; padding: 0.85rem; border: 1.5px solid #e2e8f0; border-radius: 8px; font-family: 'Sora', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#e2e8f0'">
+        <div class="addon-card" id="alarm-6" onclick="selectAlarmTier(6,0)" style="align-items:flex-start;flex-direction:column;gap:0.5rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div style="font-size:1.4rem;">🛡️</div>
+              <div>
+                <div class="addon-title">6-Point System <span style="font-size:0.7rem;font-family:'DM Mono',monospace;background:#1d6fe8;color:white;padding:0.15rem 0.5rem;border-radius:10px;margin-left:0.3rem;letter-spacing:0.08em;">INCLUDED</span></div>
+                <div class="addon-desc">Core protection for most homes</div>
+              </div>
+            </div>
+            <div class="addon-check" id="chk-alarm-6" style="flex-shrink:0;">✓</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;padding-left:2.15rem;">
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Control Panel</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">3× Door/Window</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Motion Sensor</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Smoke Detector</span>
+          </div>
         </div>
 
-        <div style="margin-bottom: 1.25rem;">
-          <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #0f1f3d; margin-bottom: 0.5rem;">Phone Number (Mobile)</label>
-          <input type="tel" name="phone" required style="width: 100%; padding: 0.85rem; border: 1.5px solid #e2e8f0; border-radius: 8px; font-family: 'Sora', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#e2e8f0'">
-        </div>
-
-        <div style="margin-bottom: 1.5rem;">
-          <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #0f1f3d; margin-bottom: 0.5rem;">What are you most interested in?</label>
-          <select name="interest" style="width: 100%; padding: 0.85rem; border: 1.5px solid #e2e8f0; border-radius: 8px; font-family: 'Sora', sans-serif; font-size: 0.9rem; outline: none; background: white;">
-            <option value="Cameras">Outdoor Cameras</option>
-            <option value="Alarm System">Full Alarm System</option>
-            <option value="Combo">Combo (Cameras + Alarm)</option>
-            <option value="Just Questions">I just have some questions</option>
-          </select>
-        </div>
-
-        <button type="submit" style="width: 100%; background: #2563eb; color: white; border: none; padding: 1rem; border-radius: 8px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#3b82f6'" onmouseout="this.style.background='#2563eb'">
-          Send Request to Kenneth
-        </button>
-        <div style="text-align: center; margin-top: 1rem; font-size: 0.75rem; color: #64748b;">
-          I value your privacy. Your info goes directly to my personal phone.
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="section" id="reviews">
-    <div class="container">
-      <div class="section-label">Customer Reviews</div>
-      <div class="section-title">What People Are Saying About Kenneth.</div>
-
-      <div class="reviews-grid">
-
-        <div class="review-card">
-          <div class="verified-badge">✓ Verified</div>
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">"Kenneth came to our door and was super straightforward — no pushy sales stuff at all. He explained everything clearly and we had cameras up that same week. The 2K footage is insane, you can read license plates from the street."</div>
-          <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg,#1e40af,#3b82f6);">JM</div>
-            <div>
-              <div class="review-name">Jason M.</div>
-              <div class="review-city">Jackson, MS</div>
+        <div class="addon-card" id="alarm-8" onclick="selectAlarmTier(8,2)" style="align-items:flex-start;flex-direction:column;gap:0.5rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div style="font-size:1.4rem;">🛡️</div>
+              <div>
+                <div class="addon-title">8-Point System</div>
+                <div class="addon-desc">Extended coverage — good for larger homes</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;flex-shrink:0;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:#4d94ff;">+$2<span style="font-size:0.7rem;font-family:'Barlow',sans-serif;font-weight:400;color:#6b7280">/mo</span></div>
+              <div class="addon-check" id="chk-alarm-8">✓</div>
             </div>
           </div>
-        </div>
-
-        <div class="review-card">
-          <div class="verified-badge">✓ Verified</div>
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">"We had Ring before and honestly there's no comparison. The NVR system records 24/7 — I didn't even know that was an option. Kenneth answered every question we had and even helped us figure out the best camera placement."</div>
-          <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg,#065f46,#10b981);">SR</div>
-            <div>
-              <div class="review-name">Sarah R.</div>
-              <div class="review-city">Hattiesburg, MS</div>
-            </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;padding-left:2.15rem;">
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Control Panel</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">5× Door/Window</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Motion Sensor</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Smoke Detector</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Glass Break</span>
           </div>
         </div>
 
-        <div class="review-card">
-          <div class="verified-badge">✓ Verified</div>
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">"Honestly wasn't planning on buying anything when he knocked, but Kenneth was legit. He knew the product inside and out, wasn't trying to oversell us, and the install crew was super professional. Three months in and we love it."</div>
-          <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg,#7c3aed,#a78bfa);">DT</div>
-            <div>
-              <div class="review-name">Derek T.</div>
-              <div class="review-city">Gulfport, MS</div>
+        <div class="addon-card" id="alarm-12" onclick="selectAlarmTier(12,6)" style="align-items:flex-start;flex-direction:column;gap:0.5rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div style="font-size:1.4rem;">🛡️</div>
+              <div>
+                <div class="addon-title">12-Point System <span style="font-size:0.7rem;font-family:'DM Mono',monospace;background:rgba(245,158,11,0.15);color:#f59e0b;padding:0.15rem 0.5rem;border-radius:10px;margin-left:0.3rem;letter-spacing:0.08em;">FULL COVERAGE</span></div>
+                <div class="addon-desc">Maximum protection — no blind spots</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;flex-shrink:0;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:#4d94ff;">+$6<span style="font-size:0.7rem;font-family:'Barlow',sans-serif;font-weight:400;color:#6b7280">/mo</span></div>
+              <div class="addon-check" id="chk-alarm-12">✓</div>
             </div>
           </div>
-        </div>
-
-        <div class="review-card">
-          <div class="verified-badge">✓ Verified</div>
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">"The night vision on these cameras is incredible — actual color at night, not that grainy green stuff. Kenneth texted me a week after install just to make sure everything was good. That kind of follow-up is rare."</div>
-          <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg,#b45309,#f59e0b);">LP</div>
-            <div>
-              <div class="review-name">Lisa P.</div>
-              <div class="review-city">Biloxi, MS</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="verified-badge">✓ Verified</div>
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">"We got the 4-cam combo with the alarm and it's unreal. Neighbors have had car break-ins and we've caught everything on camera. Kenneth made the whole process smooth from start to finish."</div>
-          <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg,#be123c,#f43f5e);">AM</div>
-            <div>
-              <div class="review-name">Alex M.</div>
-              <div class="review-city">Mobile, AL</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="verified-badge">✓ Verified</div>
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">"My husband was skeptical at first but Kenneth took the time to walk us through the comparison with Ring and Nest. Once we saw Alder actually records 24/7 and you own the equipment, it was a no-brainer. Very happy we said yes."</div>
-          <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg,#0f766e,#14b8a6);">MC</div>
-            <div>
-              <div class="review-name">Michelle C.</div>
-              <div class="review-city">New Orleans, LA</div>
-            </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;padding-left:2.15rem;">
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Control Panel</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">8× Door/Window</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">2× Motion Sensor</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Smoke Detector</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Glass Break</span>
+            <span style="font-size:0.7rem;background:#161820;border:1px solid rgba(255,255,255,0.07);padding:0.2rem 0.55rem;border-radius:4px;color:#6b7280;">Medical Pendant</span>
           </div>
         </div>
 
       </div>
+      <div class="divider"></div>
+      <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#4d94ff;margin-bottom:0.4rem;margin-top:0.25rem;">Optional Add-ons</div>
     </div>
+
+    <div class="addon-card" id="addon-doorbell" onclick="toggleAddon('doorbell', 10)">
+      <div class="addon-icon">🔔</div>
+      <div class="addon-info">
+        <div class="addon-title">Doorbell Camera</div>
+        <div class="addon-desc">2K video, 2-way audio, motion alerts, night vision. See who's at the door from anywhere.</div>
+      </div>
+      <div class="addon-price">+$10<span style="font-size:0.7rem;font-family:'Barlow',sans-serif;font-weight:400;color:#6b7280">/mo</span></div>
+      <div class="addon-check" id="chk-doorbell">✓</div>
+    </div>
+
+    <div class="addon-card" id="addon-indoor" onclick="toggleAddon('indoor', 10)">
+      <div class="addon-icon">🏠</div>
+      <div class="addon-info">
+        <div class="addon-title">Indoor Camera</div>
+        <div class="addon-desc">Keep an eye on the inside — kids, pets, package deliveries. Live view from your phone.</div>
+      </div>
+      <div class="addon-price">+$10<span style="font-size:0.7rem;font-family:'Barlow',sans-serif;font-weight:400;color:#6b7280">/mo</span></div>
+      <div class="addon-check" id="chk-indoor">✓</div>
+    </div>
+
+    <button class="btn-primary" onclick="goTo(4)">Continue →</button>
+    <p class="fine-print" style="margin-top:0.75rem;">No add-ons? Just hit Continue.</p>
   </div>
 
-  <div class="cta-banner">
-    <h2>Ready to Get Protected?</h2>
-    <p>Call or text me directly — no call centers, no hold music. Just Kenneth.</p>
-    <a href="tel:3852560204" class="cta-phone">(385) 256-0204</a>
-    <div style="margin-top:1.25rem;">
-      <a href="#contact" onclick="document.getElementById('clicked-package').value='Footer Banner - Build My Custom Quote';" style="display:inline-block;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.3);color:white;font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:600;padding:0.75rem 1.75rem;border-radius:6px;text-decoration:none;transition:background 0.2s;">Build My Custom Quote →</a>
+  <div class="screen" id="screen-4">
+    <button class="btn-back" onclick="goTo(3)">← Back</button>
+    <div class="screen-tag">Step 4 of 4</div>
+    <h1 class="screen-title">Build Your<br>Quote.</h1>
+    <p class="screen-sub">We'll generate a custom quote for your address. Takes 10 seconds.</p>
+
+    <div class="info-note">🔒 Your info stays on your device — this quote is just for you.</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <input class="form-input" type="text" id="inp-first" placeholder="First name" oninput="checkForm()" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Name</label>
+        <input class="form-input" type="text" id="inp-last" placeholder="Last name" oninput="checkForm()" />
+      </div>
     </div>
-    <div class="cta-sub" style="margin-top:0.75rem;">Kenneth Tupea · Alder Home Security · Mississippi & The South</div>
+
+    <div class="form-group">
+      <label class="form-label">Home Address</label>
+      <input class="form-input" type="text" id="inp-address" placeholder="123 Main St" oninput="checkForm()" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">City</label>
+        <input class="form-input" type="text" id="inp-city" placeholder="City" oninput="checkForm()" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">State</label>
+        <input class="form-input" type="text" id="inp-state" placeholder="UT" maxlength="2" oninput="checkForm()" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Phone Number</label>
+      <input class="form-input" type="tel" id="inp-phone" placeholder="(385) 555-0100" oninput="checkForm()" />
+    </div>
+
+    <button class="btn-primary" id="btn-4" disabled onclick="buildQuote()">Generate My Quote →</button>
   </div>
 
-  <footer>
-    <div>Kenneth Tupea — Alder Home Security Sales Representative</div>
-    <div style="margin-top:0.4rem;">📞 (385) 256-0204 · Mississippi & The South</div>
-    <div style="margin-top:0.6rem;font-size:0.68rem;opacity:0.5;">This is a personal representative page. Alder Home Security is a registered company. Pricing subject to change. All packages require service agreement.</div>
-  </footer>
+  <div class="screen" id="screen-5">
+    <div class="screen-tag">Your Custom Quote</div>
+    <h1 class="screen-title" id="quote-headline">Here's Your<br>Package.</h1>
+
+    <div class="quote-header">
+      <div class="quote-eyebrow">Built for your home at</div>
+      <div class="quote-name-display" id="q-name">—</div>
+      <div class="quote-pkg-display" id="q-address">—</div>
+      <div class="quote-price-block">
+        <div>
+          <div class="quote-msrp" id="q-msrp">—</div>
+          <div class="quote-price-main" id="q-price">—</div>
+        </div>
+        <div>
+          <div class="quote-savings-pill" id="q-save-pill">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="quote-body">
+      <div class="quote-row highlight">
+        <div class="quote-row-label">🎁 Professional Installation</div>
+        <div class="quote-row-val green">FREE ($299 value)</div>
+      </div>
+      <div class="quote-row highlight">
+        <div class="quote-row-label">🔧 Lifetime Parts & Labor</div>
+        <div class="quote-row-val green">FREE (Included)</div>
+      </div>
+      <div class="quote-row highlight">
+        <div class="quote-row-label">🚚 Guaranteed Free Move</div>
+        <div class="quote-row-val green">FREE (Included)</div>
+      </div>
+      <div class="quote-row">
+        <div class="quote-row-label" id="q-pkg-label">Package</div>
+        <div class="quote-row-val" id="q-pkg-val">—</div>
+      </div>
+      <div class="quote-row" id="q-addon-row-doorbell" style="display:none;">
+        <div class="quote-row-label">Doorbell Camera</div>
+        <div class="quote-row-val">+$10/mo</div>
+      </div>
+      <div class="quote-row" id="q-addon-row-alarm" style="display:none;">
+        <div class="quote-row-label" id="q-alarm-label">Alarm Upgrade</div>
+        <div class="quote-row-val" id="q-alarm-val">—</div>
+      </div>
+      <div class="quote-row" id="q-addon-row-indoor" style="display:none;">
+        <div class="quote-row-label">Indoor Camera</div>
+        <div class="quote-row-val">+$10/mo</div>
+      </div>
+      <div class="quote-row" style="border-top: 1px solid rgba(255,255,255,0.07); padding-top:1rem;">
+        <div class="quote-row-label" style="font-weight:600;color:#f4f5f7;">Your Total</div>
+        <div class="quote-row-val" id="q-total" style="font-size:1.05rem;">—</div>
+      </div>
+    </div>
+
+    <div class="deal-box">
+      <div class="deal-box-title">What You're Getting For Free</div>
+      <div class="deal-items">
+        <div class="deal-item">Professional installation — normally $299</div>
+        <div class="deal-item">Lifetime parts & labor on all equipment</div>
+        <div class="deal-item">Guaranteed free reinstall if you move</div>
+        <div class="deal-item" id="deal-monitoring" style="display:none;">24/7 professional monitoring center</div>
+        <div class="deal-item">2K footage — 2× clearer than standard HD</div>
+        <div class="deal-item">No batteries — ever</div>
+      </div>
+    </div>
+
+    <div class="quote-breakdown">
+      <div class="qb-title">Your Savings vs. Standard Rate</div>
+      <div class="quote-row">
+        <div class="quote-row-label">Standard Monthly Rate</div>
+        <div class="quote-row-val strikethrough" id="q-msrp-row">—</div>
+      </div>
+      <div class="quote-row">
+        <div class="quote-row-label">Your Monthly Rate</div>
+        <div class="quote-row-val" id="q-yours-row">—</div>
+      </div>
+      <div class="quote-row highlight">
+        <div class="quote-row-label">Monthly Savings</div>
+        <div class="quote-row-val green" id="q-mo-save">—</div>
+      </div>
+      <div class="quote-row highlight">
+        <div class="quote-row-label">1st Year Savings (total)</div>
+        <div class="quote-row-val green" id="q-yr-save">—</div>
+      </div>
+    </div>
+
+    <div class="address-box" id="q-address-box"></div>
+
+    <a href="tel:3852560204" class="cta-call">📞 Call Kenneth to Lock This In</a>
+    <button class="btn-restart" onclick="restart()">Start Over / New Quote</button>
+    <p class="fine-print">Quote valid for current promotions. Pricing + tax. Requires service agreement. Professional installation scheduled after signing.</p>
+  </div>
+
+</main>
+
+<script>
+  // ── STATE ──
+  const state = {
+    type: null,
+    cams: null,
+    price: 0,
+    msrp: 0,
+    addons: {},
+    addonTotal: 0,
+    alarmPts: 6,
+    alarmExtra: 0,
+    name: '',
+    address: '',
+    city: '',
+    stateAbbr: '',
+    phone: ''
+  };
+
+  // ── PRICING ──
+  const PRICES = {
+    cameras: { 2: 44, 4: 54, 6: 64, 8: 74 },
+    combo:   { 2: 69, 4: 89, 6: 99, 8: 109 }
+  };
+  const MSRP = {
+    cameras: { 2: 69, 4: 84, 6: 99, 8: 114 },
+    combo:   { 2: 109, 4: 134, 6: 154, 8: 174 }
+  };
+
+  // ── STEP NAVIGATION ──
+  function goTo(n) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + n).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateProgress(n);
+    if (n === 2) buildCamGrid();
+    if (n === 3) {
+      const ts = document.getElementById('alarm-tier-section');
+      ts.style.display = state.type === 'combo' ? 'block' : 'none';
+      if (state.type === 'combo' && state.alarmPts === 6) selectAlarmTier(6, 0);
+    }
+    save();
+  }
+
+  function updateProgress(n) {
+    for (let i = 1; i <= 5; i++) {
+      const dot = document.getElementById('sd-' + i);
+      const step = document.getElementById('ps-' + i);
+      dot.classList.remove('active', 'done');
+      step.classList.remove('active', 'done');
+      if (i < n) { dot.classList.add('done'); dot.innerHTML = '✓'; step.classList.add('done'); }
+      else if (i === n) { dot.classList.add('active'); dot.innerHTML = i; step.classList.add('active'); }
+      else { dot.innerHTML = i; }
+    }
+  }
+
+  // ── STEP 1 ──
+  function selectType(el, type) {
+    document.querySelectorAll('#screen-1 .choice-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    state.type = type;
+    document.getElementById('btn-1').disabled = false;
+    state.cams = null;
+  }
+
+  // ── STEP 2 ──
+  function buildCamGrid() {
+    const grid = document.getElementById('cam-grid');
+    const prices = PRICES[state.type];
+    const msrps = MSRP[state.type];
+    const recommended = 4;
+    grid.innerHTML = '';
+    [2, 4, 6, 8].forEach(n => {
+      const save = msrps[n] - prices[n];
+      const isRec = n === recommended;
+      const div = document.createElement('div');
+      div.className = 'choice-card' + (isRec ? ' recommended' : '') + (state.cams === n ? ' selected' : '');
+      div.innerHTML = `
+        <div class="choice-icon">${n <= 2 ? '📹' : n <= 4 ? '📹📹' : n <= 6 ? '🎥📹' : '🎥📹📹'}</div>
+        <div class="choice-title">${n} Camera${n > 1 ? 's' : ''}</div>
+        <div class="choice-desc">${camDesc(n)}</div>
+        <div class="choice-price">$${prices[n]} <span>/mo + tax</span></div>
+        <div class="choice-was">Standard $${msrps[n]}/mo</div>
+        <div class="choice-save">Save $${save}/mo</div>
+      `;
+      div.onclick = () => selectCams(div, n);
+      grid.appendChild(div);
+    });
+    document.getElementById('btn-2').disabled = state.cams === null;
+  }
+
+  function camDesc(n) {
+    if (n === 2) return 'Front + back. Good for townhomes or apartments.';
+    if (n === 4) return 'Driveway, backyard, both sides. The sweet spot for most homes.';
+    if (n === 6) return 'Full perimeter — great for corner lots or larger properties.';
+    return 'Total coverage. No blind spots. Up to 8-cam NVR capacity.';
+  }
+
+  function selectCams(el, n) {
+    document.querySelectorAll('#cam-grid .choice-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    state.cams = n;
+    state.price = PRICES[state.type][n];
+    state.msrp = MSRP[state.type][n];
+    document.getElementById('btn-2').disabled = false;
+  }
+
+  // ── ALARM TIER ──
+  function selectAlarmTier(pts, extra) {
+    [6, 8, 12].forEach(p => {
+      const card = document.getElementById('alarm-' + p);
+      if (card) card.classList.remove('selected');
+    });
+    const el = document.getElementById('alarm-' + pts);
+    if (el) el.classList.add('selected');
+    state.alarmPts = pts;
+    state.alarmExtra = extra;
+  }
+
+  // ── STEP 3 ──
+  function toggleAddon(id, price) {
+    const card = document.getElementById('addon-' + id);
+    if (state.addons[id]) {
+      delete state.addons[id];
+      card.classList.remove('selected');
+    } else {
+      state.addons[id] = price;
+      card.classList.add('selected');
+    }
+    state.addonTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
+  }
+
+  // ── STEP 4 ──
+  function checkForm() {
+    const first = document.getElementById('inp-first').value.trim();
+    const last = document.getElementById('inp-last').value.trim();
+    const addr = document.getElementById('inp-address').value.trim();
+    const city = document.getElementById('inp-city').value.trim();
+    const phone = document.getElementById('inp-phone').value.trim();
+    document.getElementById('btn-4').disabled = !(first && last && addr && city && phone);
+  }
+
+  // ── STEP 5: DECENTRALIZED WEB3 ENGINE SYNC ──
+  function buildQuote() {
+    state.name = document.getElementById('inp-first').value.trim() + ' ' + document.getElementById('inp-last').value.trim();
+    state.address = document.getElementById('inp-address').value.trim();
+    state.city = document.getElementById('inp-city').value.trim();
+    state.stateAbbr = document.getElementById('inp-state').value.trim().toUpperCase() || 'UT';
+    state.phone = document.getElementById('inp-phone').value.trim();
+
+    const total = state.price + state.addonTotal + state.alarmExtra;
+    const msrpTotal = state.msrp + state.addonTotal + state.alarmExtra;
+    const moSave = msrpTotal - total;
+    const yrSave = moSave * 12;
+    const installSave = 299;
+
+    const pkgLabel = state.type === 'combo'
+      ? `${state.cams}-Camera NVR + Full Alarm System`
+      : `${state.cams}-Camera NVR Package`;
+
+    // ── HIGH-REDUNDANCY BACKGROUND DATA HANDLER ──
+    const chosenAddons = Object.keys(state.addons).length > 0 ? Object.keys(state.addons).join(', ') : 'None';
+    
+    const payload = {
+      access_key: "Abac8e7e-a9bc-45e2-8d70-eb106ca24de9", /* Your Web3 Access Key */
+      subject: `🔥 New Security Lead: ${state.name} ($${total}/mo)`,
+      from_name: "Alder Package Builder",
+      Name: state.name,
+      Phone: state.phone,
+      Address: `${state.address}, ${state.city} ${state.stateAbbr}`,
+      Package: pkgLabel,
+      "Alarm Points": state.type === 'combo' ? `${state.alarmPts} Points` : 'N/A',
+      "Add-ons Selected": chosenAddons,
+      "Quoted Rate": `$${total}/mo`
+    };
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => console.log("Web3 Pipeline Handshake Success:", data))
+    .catch(err => console.error("Web3 Pipeline Handshake Error:", err));
+    // ──────────────────────────────────────────────
+
+    // ── UPDATE DISPLAYS ──
+    document.getElementById('q-name').textContent = state.name;
+    document.getElementById('q-address').textContent = state.address + ', ' + state.city + ' ' + state.stateAbbr;
+    document.getElementById('q-price').innerHTML = `<sup>$</sup>${total}<sub>/mo</sub>`;
+    document.getElementById('q-msrp').textContent = `Standard Rate: $${msrpTotal}/mo`;
+    document.getElementById('q-save-pill').textContent = `You save $${moSave}/mo`;
+    document.getElementById('q-pkg-label').textContent = pkgLabel;
+    document.getElementById('q-pkg-val').textContent = `$${state.price}/mo`;
+    document.getElementById('q-total').textContent = `$${total}/mo + tax`;
+    document.getElementById('q-msrp-row').textContent = `$${msrpTotal}/mo`;
+    document.getElementById('q-yours-row').textContent = `$${total}/mo`;
+    document.getElementById('q-mo-save').textContent = `$${moSave}/mo`;
+    document.getElementById('q-yr-save').textContent = `$${yrSave + installSave} (incl. free install)`;
+    document.getElementById('quote-headline').innerHTML = `Your Quote is<br>Ready, ${state.name.split(' ')[0]}.`;
+    document.getElementById('q-address-box').innerHTML = `<strong>${state.name}</strong>${state.address}<br>${state.city}, ${state.stateAbbr} · ${state.phone}`;
+
+    document.getElementById('q-addon-row-doorbell').style.display = state.addons.doorbell ? 'flex' : 'none';
+    document.getElementById('q-addon-row-indoor').style.display = state.addons.indoor ? 'flex' : 'none';
+
+    const alarmRow = document.getElementById('q-addon-row-alarm');
+    if (state.type === 'combo') {
+      alarmRow.style.display = 'flex';
+      document.getElementById('q-alarm-label').textContent = `${state.alarmPts}-Point Alarm System`;
+      document.getElementById('q-alarm-val').textContent = state.alarmExtra === 0 ? 'Included' : `+$${state.alarmExtra}/mo`;
+    } else {
+      alarmRow.style.display = 'none';
+    }
+    document.getElementById('deal-monitoring').style.display = state.type === 'combo' ? 'flex' : 'none';
+
+    save();
+    goTo(5);
+  }
+
+  // ── LOCALSTORAGE ──
+  function save() {
+    try { localStorage.setItem('alder_quote', JSON.stringify(state)); } catch(e) {}
+  }
+
+  function load() {
+    try {
+      const saved = localStorage.getItem('alder_quote');
+      if (!saved) return;
+      const s = JSON.parse(saved);
+      if (s.name && s.cams && s.type) {
+        if (s.name) {
+          const parts = s.name.split(' ');
+          document.getElementById('inp-first').value = parts[0] || '';
+          document.getElementById('inp-last').value = parts.slice(1).join(' ') || '';
+        }
+        document.getElementById('inp-address').value = s.address || '';
+        document.getElementById('inp-city').value = s.city || '';
+        document.getElementById('inp-state').value = s.stateAbbr || '';
+        document.getElementById('inp-phone').value = s.phone || '';
+        Object.assign(state, s);
+        Object.keys(state.addons || {}).forEach(id => {
+          const card = document.getElementById('addon-' + id);
+          if (card) card.classList.add('selected');
+        });
+        if (s.name) buildQuote();
+      }
+    } catch(e) {}
+  }
+
+  function restart() {
+    try { localStorage.removeItem('alder_quote'); } catch(e) {}
+    Object.assign(state, { type:null, cams:null, price:0, msrp:0, addons:{}, addonTotal:0, alarmPts:6, alarmExtra:0, name:'', address:'', city:'', stateAbbr:'', phone:'' });
+    document.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.addon-card').forEach(c => c.classList.remove('selected'));
+    ['inp-first','inp-last','inp-address','inp-city','inp-state','inp-phone'].forEach(id => { document.getElementById(id).value = ''; });
+    document.getElementById('btn-1').disabled = true;
+    document.getElementById('btn-2').disabled = true;
+    document.getElementById('btn-4').disabled = true;
+    goTo(1);
+  }
+
+  window.addEventListener('DOMContentLoaded', load);
+</script>
 
 </body>
 </html>
